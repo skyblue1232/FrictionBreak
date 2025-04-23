@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 export default function index() {
   return (
     <View>
-        <Text>Daily Fric</Text>
+        <Text>Daily Friction</Text>
     </View>
   )
 }

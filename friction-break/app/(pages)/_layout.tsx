@@ -16,7 +16,6 @@ export default function Mainlayout() {
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor },
-          headerTintColor: '#fdfdfd', 
         }}
       >
         <Stack.Screen name="(main)/index" />

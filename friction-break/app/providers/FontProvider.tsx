@@ -1,12 +1,11 @@
+import { Text } from 'react-native';
 import { useFonts } from 'expo-font';
-import React, { ReactNode } from 'react';
+import React, { useEffect, ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 interface Props {
   children: ReactNode;
 }
-
-const defaultFontColor = '#fdfdfd';
 
 export default function FontProvider({ children }: Props) {
   const [fontsLoaded] = useFonts({
@@ -16,10 +15,23 @@ export default function FontProvider({ children }: Props) {
     'Paperlogy-Black': require('../../assets/fonts/Paperlogy-7Bold.ttf'),
   });
 
+  useEffect(() => {
+    const TextAny = Text as any;
+
+    if (!TextAny.defaultProps) {
+      TextAny.defaultProps = {};
+    }
+
+    TextAny.defaultProps.style = [
+      { color: '#fdfdfd', fontFamily: 'Paperlogy-Regular' }, // ✅ 기본 색상 + 폰트 설정
+      ...(Array.isArray(TextAny.defaultProps.style)
+        ? TextAny.defaultProps.style
+        : [TextAny.defaultProps.style]),
+    ];
+  }, []);
+
   if (!fontsLoaded) {
-    return (
-      <ActivityIndicator size="large" color={defaultFontColor} />
-    );
+    return <ActivityIndicator size="large" color="#fdfdfd" />;
   }
 
   return <>{children}</>;
