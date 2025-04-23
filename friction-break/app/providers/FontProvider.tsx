@@ -6,6 +6,8 @@ interface Props {
   children: ReactNode;
 }
 
+const defaultFontColor = '#fdfdfd';
+
 export default function FontProvider({ children }: Props) {
   const [fontsLoaded] = useFonts({
     'Paperlogy-Regular': require('../../assets/fonts/Paperlogy-4Regular.ttf'),
@@ -16,7 +18,7 @@ export default function FontProvider({ children }: Props) {
 
   if (!fontsLoaded) {
     return (
-      <ActivityIndicator size="large" color="#888" />
+      <ActivityIndicator size="large" color={defaultFontColor} />
     );
   }
 
