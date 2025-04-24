@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 export default function MainPage () {
     return (
         <View style={styles.container}>
-            <Text>MainPageDaily곰돌이공냎푀푸댜민</Text>
+            <Text>MainPage곰돌이공냉푀푸댜민냉면</Text>
         </View>
     )
 }
