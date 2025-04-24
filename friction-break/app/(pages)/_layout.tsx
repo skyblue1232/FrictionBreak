@@ -5,6 +5,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import AppProviders from '../providers/AppProviders';
 
 NavigationBar.setBackgroundColorAsync('#222222');
+NavigationBar.setButtonStyleAsync('light'); 
 
 export default function Mainlayout() {
   const backgroundColor = '#222222';
@@ -19,7 +20,6 @@ export default function Mainlayout() {
         }}
       >
         <Stack.Screen name="(main)/index" />
-        <Stack.Screen name="(daily)/index" />
       </Stack>
     </AppProviders>
   );

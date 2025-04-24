@@ -23,7 +23,7 @@ export default function FontProvider({ children }: Props) {
     }
 
     TextAny.defaultProps.style = [
-      { color: '#fdfdfd', fontFamily: 'Paperlogy-Regular' }, // ✅ 기본 색상 + 폰트 설정
+      { color: '#fdfdfd', fontFamily: 'Paperlogy-Regular' }, 
       ...(Array.isArray(TextAny.defaultProps.style)
         ? TextAny.defaultProps.style
         : [TextAny.defaultProps.style]),
