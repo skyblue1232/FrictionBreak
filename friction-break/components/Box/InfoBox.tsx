@@ -17,7 +17,7 @@ export default function InfoBox({ children, flex = 1, style }: InfoBoxProps) {
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: '#F9E0CD',
+    backgroundColor: '#343434',
     borderRadius: 30,
     padding: 20,
     alignItems: 'center',

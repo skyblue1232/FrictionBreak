@@ -26,13 +26,14 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   request: {
-    backgroundColor: '#FCE1CC',
+    backgroundColor: '#343434',
     borderRadius: 16,
     padding: 12,
     marginBottom: 6,
   },
   requestText: {
     fontSize: 16,
+    color: '#fdfdfd',
   },
   underline: {
     height: 1,
