@@ -20,6 +20,7 @@ export default function Mainlayout() {
         }}
       >
         <Stack.Screen name="(main)/index" />
+        <Stack.Screen name="word-break" />
       </Stack>
     </AppProviders>
   );

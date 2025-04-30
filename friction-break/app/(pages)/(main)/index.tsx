@@ -1,4 +1,3 @@
-import CalendarBreak from "@/app/(pages)/(main)/_components/CalendarBreak";
 import RequestBreak from "@/app/(pages)/(main)/_components/RequestBreak";
 import TitleHeader from "@/app/(pages)/(main)/_components/TitleHeader";
 import WordBreak from "@/app/(pages)/(main)/_components/WordBreak";
@@ -7,6 +6,7 @@ import { CalendarProvider } from "@/contexts/CalendarContext";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ScrollView, View, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { useState } from "react";
+import TodayBreak from "./_components/TodayBreak/TodayBreak";
 
 export default function MainPage() {
   const [isDateSliderVisible, setIsDateSliderVisible] = useState(true);
@@ -44,7 +44,7 @@ export default function MainPage() {
 
           <TitleHeader />
           <WordBreak />
-          <CalendarBreak />
+          <TodayBreak />  
           <RequestBreak />
         </ScrollView>
       </CalendarProvider>
