@@ -3,9 +3,12 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
 import AppProviders from '../providers/AppProviders';
+import { Platform } from 'react-native';
 
-NavigationBar.setBackgroundColorAsync('#222222');
-NavigationBar.setButtonStyleAsync('light'); 
+if (Platform.OS === 'android') {
+  NavigationBar.setBackgroundColorAsync('#222222');
+  NavigationBar.setButtonStyleAsync('light');
+}
 
 export default function Mainlayout() {
   const backgroundColor = '#222222';
@@ -20,7 +23,7 @@ export default function Mainlayout() {
         }}
       >
         <Stack.Screen name="(main)/index" />
-        <Stack.Screen name="word-break" />
+        <Stack.Screen name="(pages)/word-break" />
       </Stack>
     </AppProviders>
   );
