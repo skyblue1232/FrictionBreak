@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   box: {
-    backgroundColor: '#F9E0CD',
+    backgroundColor: '#343434',
     borderRadius: 30,
     padding: 20,
     alignItems: 'center',
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   boxText: {
     fontSize: 24,
     lineHeight: 40,
+    color: '#fdfdfd',
     fontWeight: '600',
   },
 });

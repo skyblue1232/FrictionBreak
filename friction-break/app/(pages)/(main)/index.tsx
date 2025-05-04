@@ -1,38 +1,67 @@
-import CalendarBreak from "@/app/(pages)/(main)/_components/CalendarBreak";
 import RequestBreak from "@/app/(pages)/(main)/_components/RequestBreak";
 import TitleHeader from "@/app/(pages)/(main)/_components/TitleHeader";
 import WordBreak from "@/app/(pages)/(main)/_components/WordBreak";
-import FloatingButton from "@/components/Button/FloatingButton";
-import { StyleSheet, ScrollView, View } from "react-native";
+import DateSlider from "@/components/Calendar/DateSlider";
+import { CalendarProvider } from "@/contexts/CalendarContext";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, ScrollView, View, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
+import { useState } from "react";
+import TodayBreak from "./_components/TodayBreak/TodayBreak";
 
 export default function MainPage() {
+  const [isDateSliderVisible, setIsDateSliderVisible] = useState(true);
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const yOffset = event.nativeEvent.contentOffset.y;
+
+    if (yOffset < 300) { 
+      if (!isDateSliderVisible) {
+        setIsDateSliderVisible(true);
+      }
+    } else {
+      if (isDateSliderVisible) {
+        setIsDateSliderVisible(false);
+      }
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <TitleHeader />
-        <WordBreak />
-        <CalendarBreak />
-        <RequestBreak />
-      </ScrollView>
-
-      <FloatingButton
-        onPress={() => console.log('설명서 보기 누름!')}
+      <StatusBar 
+        style="light" 
+        backgroundColor={isDateSliderVisible ? '#343434' : '#222222'} 
       />
+
+      <CalendarProvider>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
+          <View style={styles.dateSliderWrapper}>
+            <DateSlider />
+          </View>
+
+          <TitleHeader />
+          <WordBreak />
+          <TodayBreak />  
+          <RequestBreak />
+        </ScrollView>
+      </CalendarProvider>
     </View>
   );
 }
 
-
 export const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        position: 'relative', 
-    },
-    scroll: {
-        flex: 1,
-        backgroundColor: 'none', 
-    },
-    container: {
-        paddingHorizontal: 20,
-    },
+  wrapper: {
+    flex: 1,
+  },
+  container: {
+    paddingHorizontal: 20,
+  },
+  dateSliderWrapper: {
+    marginTop: 0,
+    backgroundColor: '#343434',
+    marginHorizontal: -20,
+  },
 });
