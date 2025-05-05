@@ -1,66 +1,109 @@
-import React, { useRef } from 'react';
-import { FlatList, StyleSheet, Dimensions, View } from 'react-native';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  View,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from 'react-native';
+import dayjs from 'dayjs';
 import { useCalendar } from '@/contexts/CalendarContext';
 import DateItem from './DateItem';
 import CalendarHeader from './CalendarHeader';
-import DetailButton from '../Button/DetailButton';
-import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = width / 5;
+const CENTER_INDEX = 2;
+const PAST_DAYS = 36;
+const FUTURE_DAYS = 2;
 
 export default function DateSlider() {
-  const { dates, selectedIndex, handlePress, handleLoadMorePastDates } = useCalendar();
+  const { handlePress, today } = useCalendar();
   const flatListRef = useRef<FlatList>(null);
-  const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(PAST_DAYS); 
+
+  const dates = useMemo(() => {
+    const result = [];
+    for (let i = -PAST_DAYS; i <= FUTURE_DAYS; i++) {
+      result.push(today.add(i, 'day'));
+    }
+    return result;
+  }, [today]);
+
+  const scrollToCenter = (dateIndex: number, animated = true) => {
+    const index = dateIndex + CENTER_INDEX;
+    flatListRef.current?.scrollToIndex({ index, animated });
+  };
+
+  const handleScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const centerFlatIndex = Math.round(offsetX / ITEM_WIDTH);
+    const realIndex = centerFlatIndex - CENTER_INDEX;
+
+    if (realIndex >= 0 && realIndex < dates.length) {
+      setSelectedIndex(realIndex);
+      handlePress(realIndex);
+    }
+  };
+
+  useEffect(() => {
+    const initialIndex = PAST_DAYS + CENTER_INDEX;
+    setTimeout(() => {
+      flatListRef.current?.scrollToIndex({ index: initialIndex, animated: false });
+    }, 50);
+  }, [dates]);
 
   return (
     <View style={styles.container}>
       <CalendarHeader />
       <FlatList
         ref={flatListRef}
-        data={dates}
+        data={[null, null, ...dates, null, null]}
         horizontal
         showsHorizontalScrollIndicator={false}
-        pagingEnabled
+        decelerationRate="fast"
+        snapToInterval={ITEM_WIDTH}
         snapToAlignment="center"
-        keyExtractor={(_, idx) => idx.toString()}
+        initialScrollIndex={PAST_DAYS + CENTER_INDEX}
         getItemLayout={(_, index) => ({
           length: ITEM_WIDTH,
           offset: ITEM_WIDTH * index,
           index,
         })}
-        onMomentumScrollBegin={({ nativeEvent }) => {
-          if (nativeEvent.contentOffset.x < ITEM_WIDTH) {
-            handleLoadMorePastDates();
-          }
+        keyExtractor={(_, idx) => idx.toString()}
+        onScrollToIndexFailed={({ index }) => {
+          setTimeout(() => {
+            flatListRef.current?.scrollToIndex({ index, animated: true });
+          }, 100);
         }}
-        onScrollBeginDrag={({ nativeEvent }) => {
-          const { contentOffset } = nativeEvent;
-          const rightmostOffset = (selectedIndex + 2) * ITEM_WIDTH;
-          if (contentOffset.x > rightmostOffset) {
-            flatListRef.current?.scrollToOffset({ offset: rightmostOffset, animated: true });
+        onMomentumScrollEnd={handleScrollEnd}
+        renderItem={({ item, index }) => {
+          const realIndex = index - CENTER_INDEX;
+          if (!item || realIndex < 0 || realIndex >= dates.length) {
+            return <View style={{ width: ITEM_WIDTH }} />;
           }
+
+          const isCentered = index === selectedIndex + CENTER_INDEX;
+          const isFuture = item.isAfter(today);
+
+          return (
+            <DateItem
+              date={item}
+              isSelected={isCentered}
+              distance={Math.abs(index - (selectedIndex + CENTER_INDEX))}
+              onPress={() => {
+                if (!isFuture) {
+                  setSelectedIndex(realIndex);
+                  handlePress(realIndex);
+                  scrollToCenter(realIndex);
+                }
+              }}
+              showIcon={realIndex <= PAST_DAYS}
+            />
+          );
         }}
-        renderItem={({ item, index }) => (
-          <DateItem
-            date={item}
-            isSelected={index === selectedIndex}
-            distance={Math.abs(index - selectedIndex)}
-            onPress={() => {
-              handlePress(index);
-              flatListRef.current?.scrollToIndex({ index, animated: true });
-            }}
-            showIcon={index <= selectedIndex}
-          />
-        )}
       />
-      <View style={styles.buttonContainer}>
-        <DetailButton 
-          title='펼쳐보기' 
-          align='right'
-          onPress={() => router.push("/word-break")}  />
-      </View>
     </View>
   );
 }
@@ -73,7 +116,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#343434',
   },
-    buttonContainer: {
-        marginBottom: 16,
-    },
 });

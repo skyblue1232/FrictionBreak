@@ -23,20 +23,22 @@ export default function RequestBreak() {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 40,
+    marginTop: 40,
+    marginBottom: 20,
   },
   request: {
     backgroundColor: '#343434',
     borderRadius: 16,
-    padding: 12,
-    marginBottom: 6,
+    padding: 20,
+    marginTop: 8,
+    marginBottom: 2,
   },
   requestText: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#fdfdfd',
   },
   underline: {
-    height: 1,
+    height: 0.5,
     backgroundColor: '#9d9d9d',    
   },  
 });

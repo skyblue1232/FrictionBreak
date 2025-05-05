@@ -8,7 +8,7 @@ import HammerIcon from '@/assets/images/TodayHamer';
 
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = width / 5;
-const DATE_NUMBER_HEIGHT = 50; // 날짜 숫자 높이 고정
+const DATE_NUMBER_HEIGHT = 50; 
 
 interface DateItemProps {
   date: dayjs.Dayjs;
