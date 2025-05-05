@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
   },
   progressText: {
     position: 'absolute',
-    fontSize: 24,
+    fontSize: 32,
+    lineHeight: 32,
     color: '#fdfdfd',
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
 });

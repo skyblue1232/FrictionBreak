@@ -2,19 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import LabelWithIcon from '@/components/Label/LabelWithIcon';
 import LuckyImage from '../../../../assets/images/LuckyImage';
-import InfoBox from '@/components/Box/InfoBox';
+import Card from '@/components/Common/Card';
 
 export default function WordBreak() {
   return (
     <View style={styles.container}>
       <LabelWithIcon text="word-break" />
       <View style={styles.boxContainer}>
-        <InfoBox flex={1}>
+        <Card flex={1} color={'gray'} height={132} contentStyle={{ alignItems: 'center', justifyContent: 'center' }}>
           <LuckyImage style={styles.image} />
-        </InfoBox>
-        <InfoBox flex={2}>
+        </Card>
+        <Card flex={2} color={'gray'} height={132} contentStyle={{ alignItems: 'center', justifyContent: 'center' }}>
           <Text style={styles.boxText}>4잎 클로버</Text>
-        </InfoBox>
+        </Card>
       </View>
     </View>
   );
@@ -23,10 +23,11 @@ export default function WordBreak() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 40,
   },
   boxContainer: {
     flexDirection: 'row',
+    marginTop: 8,
     gap: 10,
   },
   box: {
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: 40,
-    height: 40,
+    width: 88,
+    height: 88,
   },
   boxText: {
     fontSize: 24,

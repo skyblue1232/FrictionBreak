@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   breakText: {
     color: '#fdfdfd',
-    fontSize: 14,
+    fontSize: 18,
     marginRight: 4,
   },
 });

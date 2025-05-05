@@ -20,10 +20,13 @@ const styles = StyleSheet.create({
   descriptionText: {
     color: '#fdfdfd',
     fontSize: 16,
-    textAlign: 'center',
-    lineHeight: 24,
+    textAlign: 'left',
+    lineHeight: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   highlight: {
+    fontWeight: '700',
     color: '#4267F4',
   },
 });
