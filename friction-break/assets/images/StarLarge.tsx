@@ -1,19 +1,18 @@
-// components/icons/StarLarge.tsx
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
 export default function StarLarge(props: SvgProps) {
   return (
     <Svg
-      width={56}
-      height={55}
+      width={props.width || 40}
+      height={props.height || 40}
       viewBox="0 0 56 55"
       fill="none"
       {...props}
     >
       <Path
         d="M18.9182 6.95085C21.7768 -1.84689 34.2232 -1.84689 37.0818 6.95085C38.3602 10.8853 42.0266 13.5491 46.1636 13.5491C55.4141 13.5491 59.2602 25.3864 51.7764 30.8237C48.4296 33.2554 47.0291 37.5655 48.3075 41.5C51.166 50.2977 41.0966 57.6136 33.6129 52.1763C30.266 49.7446 25.734 49.7446 22.3871 52.1763C14.9034 57.6136 4.83396 50.2977 7.69252 41.5C8.9709 37.5655 7.57044 33.2554 4.22359 30.8237C-3.26022 25.3864 0.585949 13.5491 9.83644 13.5491C13.9734 13.5491 17.6398 10.8853 18.9182 6.95085Z"
-        fill="#EEDC88"
+        fill={props.color || "#07CB89"}
       />
     </Svg>
   );

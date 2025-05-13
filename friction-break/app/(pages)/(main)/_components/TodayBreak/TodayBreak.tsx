@@ -7,7 +7,7 @@ export default function TodayBreak() {
   const mockPercent = 75;
 
   return (
-    <Card color="gray" height={300}>
+    <Card color="gray">
       <TodayBreakHeader />
       <TodayBreakProgress percent={mockPercent} />
       <TodayBreakDescription percent={mockPercent} />

@@ -11,7 +11,8 @@ export default function TitleHeader() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: 16,
+    marginBottom: 12,
   },
   title: {
     fontSize: 32,

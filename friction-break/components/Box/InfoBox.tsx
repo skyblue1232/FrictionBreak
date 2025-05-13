@@ -4,12 +4,13 @@ import { View, StyleSheet, ViewStyle } from 'react-native';
 interface InfoBoxProps {
   children: React.ReactNode;
   flex?: number;
+  height?: number;
   style?: ViewStyle;
 }
 
-export default function InfoBox({ children, flex = 1, style }: InfoBoxProps) {
+export default function InfoBox({ children, flex = 1, height, style }: InfoBoxProps) {
   return (
-    <View style={[styles.box, { flex }, style]}>
+    <View style={[styles.box, { flex, height }, style]}>
       {children}
     </View>
   );

@@ -8,8 +8,8 @@ interface NextButtonProps {
 }
 
 export default function NextButton({
-  width = 6,
-  height = 9,
+  width = 9,
+  height = 18,
   color = '#9D9D9D',
 }: NextButtonProps) {
   return (
