@@ -1,3 +1,4 @@
+import Kitten from '@/assets/images/Kitten';
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
@@ -8,10 +9,7 @@ type Props = {
 export default function TodayMagicText({ percentage }: Props) {
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/panda.png')} // 이모지 대신 이미지
-        style={styles.image}
-      />
+      <Kitten width={80} height={80} />
       <Text style={styles.text}>
         오늘의 마찰력은 <Text style={styles.highlight}>{percentage}%</Text>입니다.
       </Text>
@@ -24,21 +22,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#00DA7C',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    borderRadius: 16,
-    marginVertical: 10,
+    padding: 16,
+    borderRadius: 30,
+    marginVertical: 12,
+    zIndex: 100,
   },
   image: {
-    width: 32,
-    height: 32,
+    marginTop: 4,
     marginRight: 8,
   },
   text: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 20,
+    marginBottom: 4,
     fontWeight: 'bold',
   },
   highlight: {
     color: '#3333ff',
+    fontSize: 24,
   },
 });
