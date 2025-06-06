@@ -1,42 +1,43 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, G } from 'react-native-svg';
 
-type Props = {
-  percentage: number;
-};
+export default function MagicPowerCircle({ percent = 75 }) {
+  const RADIUS = 80;
+  const STROKE_WIDTH = 16;
+  const CIRCLE_LENGTH = 2 * Math.PI * RADIUS;
 
-const RADIUS = 70;
-const STROKE_WIDTH = 10;
-const CIRCLE_LENGTH = 2 * Math.PI * RADIUS;
-
-export default function MagicPowerCircle({ percentage }: Props) {
-  const strokeDashoffset = CIRCLE_LENGTH - (CIRCLE_LENGTH * percentage) / 100;
+  const strokeDashoffset = useMemo(() => 
+      CIRCLE_LENGTH * (1 - percent / 100), 
+    [percent]);
 
   return (
     <View style={styles.container}>
-      <Svg width={160} height={160}>
-        <Circle
-          stroke="#2C2C2E"
-          cx={80}
-          cy={80}
-          r={RADIUS}
-          strokeWidth={STROKE_WIDTH}
-        />
-        <Circle
-          stroke="#00DA7C"
-          cx={80}
-          cy={80}
-          r={RADIUS}
-          strokeWidth={STROKE_WIDTH}
-          strokeDasharray={CIRCLE_LENGTH}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          rotation="-90"
-          origin="80, 80"
-        />
+      <Svg width={176} height={176}>
+        <G rotation="-90" origin="88,88">
+          <Circle
+            stroke="#07CB89"
+            strokeOpacity={0.2}
+            cx={88}
+            cy={88}
+            r={RADIUS}
+            strokeWidth={STROKE_WIDTH}
+            fill="#222222"
+          />
+          <Circle
+            stroke="#07CB89"
+            cx={88}
+            cy={88}
+            r={RADIUS}
+            strokeWidth={STROKE_WIDTH}
+            strokeDasharray={`${CIRCLE_LENGTH} ${CIRCLE_LENGTH}`}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            fill="none"
+          />
+        </G>
       </Svg>
-      <Text style={styles.text}>{percentage}%</Text>
+      <Text style={styles.text}>{percent}%</Text>
     </View>
   );
 }
@@ -44,12 +45,14 @@ export default function MagicPowerCircle({ percentage }: Props) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginVertical: 20,
+    justifyContent: 'center',
+    marginBottom: 32,
   },
   text: {
     position: 'absolute',
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontSize: 32,
+    lineHeight: 32,
+    color: '#fdfdfd',
+    fontWeight: '600',
   },
 });
