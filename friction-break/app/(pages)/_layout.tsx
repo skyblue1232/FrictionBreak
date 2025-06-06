@@ -10,7 +10,7 @@ if (Platform.OS === 'android') {
   NavigationBar.setButtonStyleAsync('light');
 }
 
-export default function Mainlayout() {
+export default function Layout() {
   const backgroundColor = '#222222';
 
   return (
@@ -22,8 +22,9 @@ export default function Mainlayout() {
           contentStyle: { backgroundColor },
         }}
       >
-        <Stack.Screen name="(main)/index" />
+        <Stack.Screen name="friction/index" />
         <Stack.Screen name="word-break/index" />
+        <Stack.Screen name="request-break/index" />
       </Stack>
     </AppProviders>
   );
