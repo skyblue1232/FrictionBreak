@@ -1,0 +1,45 @@
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import NextButton from '@/assets/images/NextButton';
+import { useRouter } from 'expo-router';
+
+export default function TodayBreakHeader() {
+  const router = useRouter();
+  
+  return (
+    <View style={styles.headerContainer}>
+      <Text style={styles.headerText}>today-break</Text>
+      <TouchableOpacity style={styles.breakButton}>
+        <Text 
+          style={styles.breakText}
+          onPress={() => router.push("/friction")} >break하러 가기</Text>
+        <NextButton />
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#9d9d9d',
+    paddingBottom: 10,
+    marginBottom: 20,
+  },
+  headerText: {
+    color: '#fdfdfd',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  breakButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  breakText: {
+    color: '#fdfdfd',
+    fontSize: 18,
+    marginRight: 4,
+  },
+});
