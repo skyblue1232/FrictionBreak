@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
     lineHeight: 40,
   },
   labelPoint: {
-    width: 20,
-    height: 20,
+    width: 16,
+    height: 16,
     marginTop: 4,
+    opacity: 0.8,
   },
 });
