@@ -7,7 +7,6 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from 'react-native';
-import dayjs from 'dayjs';
 import { useCalendar } from '@/contexts/CalendarContext';
 import DateItem from './DateItem';
 import CalendarHeader from './CalendarHeader';
