@@ -24,7 +24,7 @@ export default function Layout() {
       >
         <Stack.Screen name="friction/index" />
         <Stack.Screen name="word-break/index" />
-        <Stack.Screen name="request-break/index" />
+        <Stack.Screen name='request/index' />
       </Stack>
     </AppProviders>
   );
