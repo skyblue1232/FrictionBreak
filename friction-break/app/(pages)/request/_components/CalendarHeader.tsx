@@ -1,5 +1,7 @@
-import React from 'react';
+import DownArrowIcon from '@/assets/images/ToggleIcon';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import CalendarDropdown from './CalendarDropdown'; 
 
 interface Props {
   year: number;
@@ -8,45 +10,35 @@ interface Props {
 }
 
 const CalendarHeader: React.FC<Props> = ({ year, month, onMonthChange }) => {
-  const handlePrevMonth = () => {
-    const newMonth = month - 1;
-    if (newMonth < 1 && year > 2024) {
-      onMonthChange(year - 1, 12);
-    } else if (newMonth >= 1) {
-      onMonthChange(year, newMonth);
-    }
-  };
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleNextMonth = () => {
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-    const currentYear = now.getFullYear();
-    const selectedDate = new Date(year, month - 1, 1);
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
-    if (
-      selectedDate < new Date(currentYear, currentMonth - 1, 1) &&
-      selectedDate >= sixMonthsAgo
-    ) {
-      const newMonth = month + 1;
-      if (newMonth > 12) {
-        onMonthChange(year + 1, 1);
-      } else {
-        onMonthChange(year, newMonth);
-      }
-    }
+  const handleMonthSelect = (newYear: number, newMonth: number) => {
+    onMonthChange(newYear, newMonth);
+    setIsDropdownOpen(false);
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handlePrevMonth}>
-        <Text style={styles.arrow}>◀️</Text>
+      <View style={styles.yearContainer}>
+        <Text style={styles.yearText}>{year}</Text>
+      </View>
+
+      <TouchableOpacity
+        style={styles.monthContainer}
+        onPress={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
+        <Text style={styles.monthText}>{`${month}월`}</Text>
+        <DownArrowIcon />
       </TouchableOpacity>
-      <Text style={styles.headerText}>{`${year}년 ${month}월`}</Text>
-      <TouchableOpacity onPress={handleNextMonth}>
-        <Text style={styles.arrow}>▶️</Text>
-      </TouchableOpacity>
+
+      {isDropdownOpen && (
+        <CalendarDropdown
+          year={year}
+          month={month}
+          onSelect={handleMonthSelect}
+          onClose={() => setIsDropdownOpen(false)}
+        />
+      )}
     </View>
   );
 };
@@ -54,17 +46,32 @@ const CalendarHeader: React.FC<Props> = ({ year, month, onMonthChange }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
     marginBottom: 16,
+    position: 'relative',
+    zIndex: 1, 
   },
-  headerText: {
-    fontSize: 20,
+  yearContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  yearText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    lineHeight: 32,
     color: '#FFFFFF',
   },
-  arrow: {
-    fontSize: 20,
+  monthContainer: {
+    position: 'absolute',
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  monthText: {
+    fontSize: 16,
     color: '#FFFFFF',
+    marginRight: 4,
   },
 });
 

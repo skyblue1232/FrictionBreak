@@ -50,17 +50,19 @@ const styles = StyleSheet.create({
   },
   dayContainer: {
     width: '14.28%',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 4,
+    marginVertical: 10,
   },
   circle: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 40,
+    height: 40,
+    borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },
   dayText: {
+    fontSize: 20,
     color: '#FFFFFF',
   },
 });
