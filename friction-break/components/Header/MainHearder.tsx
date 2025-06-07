@@ -7,7 +7,7 @@ interface HeaderBarProps {
   onBackPress: () => void;
 }
 
-const HeaderBar: React.FC<HeaderBarProps> = ({ title, onBackPress }) => {
+export default function HeaderBar ({ title, onBackPress }: HeaderBarProps) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
@@ -39,5 +39,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default HeaderBar;

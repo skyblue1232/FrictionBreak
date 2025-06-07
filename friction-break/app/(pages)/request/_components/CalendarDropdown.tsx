@@ -8,12 +8,12 @@ interface Props {
   onClose: () => void;
 }
 
-const CalendarDropdown: React.FC<Props> = ({
+export default function CalendarDropdown({
   year,
   month,
   onSelect,
   onClose,
-}) => {
+}: Props) {
   const now = new Date();
   const months = Array.from({ length: 7 }, (_, i) => {
     const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
@@ -65,4 +65,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarDropdown;
