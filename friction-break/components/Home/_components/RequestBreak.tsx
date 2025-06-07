@@ -16,7 +16,7 @@ export default function RequestBreak() {
       <View style={styles.headerRow}>
         <LabelWithIcon text="request-break"/>
         <TouchableOpacity>
-          <Text style={styles.plusText} onPress={() => router.push('/request-break')}>+</Text>
+          <Text style={styles.plusText} onPress={() => router.push('/request')}>+</Text>
         </TouchableOpacity>
       </View>
       {requests.map((item, idx) => (
