@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const AttendanceInfo = () => {
+export default function AttendanceInfo() {
   return (
     <View style={styles.container}>
       <View style={styles.leftSection}>
@@ -21,7 +21,7 @@ const AttendanceInfo = () => {
       <View style={styles.divider} />
       <View style={styles.rightSection}>
         <Text style={styles.infoText}>
-          지금까지 n일 출석하셨네요. {'\n'}
+          지금까지 9일 출석하셨네요. {'\n'}
           앞으로도 열심히 마찰을 줄여봐요!
         </Text>
       </View>
@@ -73,5 +73,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-export default AttendanceInfo;

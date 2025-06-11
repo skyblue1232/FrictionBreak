@@ -13,7 +13,7 @@ import Svg, {
 } from 'react-native-svg';
 
 const CustomIcon = ({ fill = '#222222' }) => (
-  <Svg width={62} height={60} viewBox="0 0 52 50" fill="none">
+  <Svg width={56} height={54} viewBox="0 0 52 50" fill="none">
     {[...Array(8)].map((_, i) => (
       <G
         key={i}

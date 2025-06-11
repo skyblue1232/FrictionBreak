@@ -9,7 +9,7 @@ interface Props {
   onMonthChange: (newYear: number, newMonth: number) => void;
 }
 
-const CalendarHeader: React.FC<Props> = ({ year, month, onMonthChange }) => {
+export default function CalendarHeader ({ year, month, onMonthChange }: Props) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleMonthSelect = (newYear: number, newMonth: number) => {
@@ -75,4 +75,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarHeader;

@@ -7,7 +7,7 @@ interface Props {
   month: number;
 }
 
-const AttendanceCalendar: React.FC<Props> = ({ year, month }) => {
+export default function AttendanceCalendar({ year, month }: Props) {
   const today = new Date();
   const todayString = today.toISOString().split('T')[0];
   const daysInMonth = new Date(year, month, 0).getDate();
@@ -67,4 +67,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AttendanceCalendar;

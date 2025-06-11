@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { progressData } from '@/data/progressData'; 
 
-const AttendanceProgress = () => {
+export default function AttendanceProgress() {
   return (
     <View style={styles.container}>
       {progressData.map((item, index) => (
@@ -59,4 +59,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AttendanceProgress;

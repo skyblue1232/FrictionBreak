@@ -22,7 +22,7 @@ export default function RequestPage() {
     <View style={styles.container}>
       <HeaderBar title="마찰 리퀘스트" onBackPress={() => router.back()} />
       <ScrollView
-        showsVerticalScrollIndicator={false} // 👈 스크롤바 숨김
+        showsVerticalScrollIndicator={false} 
         contentContainerStyle={styles.scrollContent}
       >
         <CalendarHeader
