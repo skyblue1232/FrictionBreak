@@ -13,7 +13,7 @@
     },
     "splash": {
       "image": "./assets/images/Splash.png",
-      "resizeMode": "contain",  
+      "resizeMode": "contain",
       "backgroundColor": "#222222"
     },
     "android": {
@@ -38,7 +38,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
