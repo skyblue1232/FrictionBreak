@@ -15,7 +15,7 @@ export default function FrictionPage() {
     <View style={styles.container}>
       <HeaderBar
         title="오늘의 마찰력"
-        onBackPress={() => router.back()}
+        onBackPress={() => router.push("/")}
       />
 
       <ScrollView

@@ -32,7 +32,7 @@ export default function RequestBreak() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 40,
-    marginBottom: 20,
+    marginBottom: 100,
   },
   headerRow: {
     flexDirection: 'row',
